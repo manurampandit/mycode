@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+		<title> Dynamic checkbox demo</title>
+		<meta content="This demo takes json as input and displays checkboxes with display text and value. More detail can be found in readme file" name="description" />
+		<meta name="author" content="Manu Ram Pandit"/>
+		<meta charset="UTF-8" />
+		<style type="text/css">
+			.chkClass {
+				display: block;
+				float: left;
+				padding: 2px 2px 2px 2px;
+			}
+		</style>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script type="text/javascript">
+			var data = [{
+				displayText : "Display 1",
+				valueText : "'Value 1'"
+			}, {
+				displayText : "Display 2",
+				valueText : "'Value 2'"
+			}, {
+				displayText : "Display 3",
+				valueText : "'Value 3'"
+			}, {
+				displayText : "Display 4",
+				valueText : "'Value 4'"
+			}, {
+				displayText : "Display 5",
+				valueText : "'Value 5'"
+			}];
+			/*
+			 * Function Description: This function reads the json array and create checkboxes
+			 * with corresponding display Text and value text.
+			 * Further on click of each checkbox, the function is binded
+			 */
+			function createChexkbox() {
+				var container = $('#chkBoxContainer');
+				for (var i = 0; i < data.length; i++) {
+					container.append('<div>');
+					container.append($(document.createElement('input')).attr({
+						id : 'chkBox' + i,
+						name : 'myCheckbox',
+						value : data[i].valueText,
+						type : 'checkbox',
+						class : 'chkClass',
+						onclick : 'myFunction(' + data[i].valueText + ');'
+					}));
+					container.append('<label for="chkBox' + i + '">' + data[i].displayText + '</label>');
+				};
+			}
+
+			/*
+			 * Sample function to handle on click of checkbox.
+			 * User may use browser console window to see the logs.
+			 */
+			function myFunction(value) {
+				console.log("User clicked:" + value);
+			}
+
+
+			$(document).ready(function() {
+				createChexkbox();
+			});
+		</script>
+	</head>
+	<body>
+		<div id="chkBoxContainer"></div>
+	</body>
+</html>
