@@ -4,30 +4,31 @@
 package in.manurampandit.sorting;
 
 /**
- * Insertion sort algo
+ * Selection sort algo
  * @author manurampandit
+ *
  */
-public class InsertionSort  {
+public class SelectionSort {
 
 	/**
-	 * sort an array via insertion sort
+	 * sort an array via selection sort
 	 * @param a
 	 */
 	public static void sort(Comparable[] a){
-		int j;
-		for (int i = 1; i < a.length; i++) {
-			//insert i at its position in a[0] to a[i-1]
-			for (j = i; j >0; j--) {
-				if(isLess(a[j],a[j-1]))
-					exchange(a, j,j-1);
-				else
-					break;
+		int smallest;
+		for (int i = 0; i < a.length; i++) {
+			smallest=i;
+			//find (i+1)th smallest number 
+			for (int j = i+1; j < a.length; j++) {
+				if(isLess(a[j],a[smallest]))
+					smallest=j;
 			}
+			//swap (i+1)th smallest with the ith index
+			exchange(a, i, smallest);
 		}
 	}
 	
 	/**
-	 * Test method -TDD
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -64,5 +65,4 @@ public class InsertionSort  {
 		a[x]=a[y];
 		a[y]=t;
 	}
-
 }
