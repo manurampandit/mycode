@@ -6,13 +6,13 @@ package in.manurampandit.datastructures;
 import java.util.Iterator;
 
 /**
+ * Generic stack class
  * @author manurampandit
- * TODO: return exception if stack is already null
  */
 public class Stack<Item> implements Iterable<Item>{
 
 	private Node top;
-
+	private int size=0;
 	private class Node {
 		Item item;
 		Node next;
@@ -31,6 +31,7 @@ public class Stack<Item> implements Iterable<Item>{
 		Node oldTop = top;
 		top = new Node(item);
 		top.next = oldTop;
+		this.size++;
 	}
 
 	/**
@@ -45,6 +46,7 @@ public class Stack<Item> implements Iterable<Item>{
 		}
 		Item item = top.item;
 		top = top.next;
+		this.size--;
 		return item;
 	}
 	
@@ -58,9 +60,13 @@ public class Stack<Item> implements Iterable<Item>{
 			oldTop=oldTop.next;
 		}
 		System.out.println();
-	//TODO: write iterable method
-		
-	
+	}
+	/**
+	 * 
+	 * @return -number of elements in the stack
+	 */
+	public int size(){
+		return this.size;
 	}
 
 	/**
@@ -87,7 +93,8 @@ public class Stack<Item> implements Iterable<Item>{
 		System.out.println("popped item:" + item);
 		myStack.printStack();
 		*/
-		for (Iterator iterator = myStack.iterator(); iterator.hasNext();) {
+		System.out.println("No. of elements in stack:" + myStack.size());
+		for (Iterator<Integer> iterator = myStack.iterator(); iterator.hasNext();) {
 			int currNo = (int) iterator.next();
 			System.out.println(currNo);
 			
@@ -122,7 +129,7 @@ public class Stack<Item> implements Iterable<Item>{
 		 * Method not implemented
 		 */
 		public void remove() {
-			// TODO Auto-generated method stub
+			// NOt implemented.
 			
 		}
 		
